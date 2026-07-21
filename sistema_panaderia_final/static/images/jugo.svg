@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Jugo natural">
+  <rect width="640" height="480" fill="#eff9f3"/>
+  <path d="M245 170h150l-18 220c-2 23-21 40-44 40h-26c-23 0-42-17-44-40l-18-220z" fill="#ffffff"/>
+  <path d="M260 235h120l-12 140c-1 15-14 27-29 27h-38c-15 0-28-12-29-27l-12-140z" fill="#f7a927"/>
+  <path d="M260 170h120" stroke="#8bd1b0" stroke-width="16" stroke-linecap="round"/>
+  <path d="M330 166l64-88" stroke="#2a8b6e" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="405" cy="78" r="24" fill="#ffcf55"/>
+  <ellipse cx="320" cy="440" rx="145" ry="20" fill="#5b321f" opacity=".12"/>
+</svg>

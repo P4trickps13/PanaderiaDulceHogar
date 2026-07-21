@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Croissant">
+  <rect width="640" height="480" fill="#fff4e6"/>
+  <path d="M135 300c50-110 148-166 258-150 82 12 139 66 166 150-70-50-134-68-206-50-78 20-137 58-218 50z" fill="#d47a24"/>
+  <path d="M178 278c47-73 113-110 196-103 57 5 103 35 133 87-67-27-129-30-190-8-48 18-88 36-139 24z" fill="#f0b55f"/>
+  <path d="M238 238c34-30 72-43 116-39M342 202c38 14 66 39 84 75" fill="none" stroke="#fff0c3" stroke-width="16" stroke-linecap="round"/>
+  <ellipse cx="320" cy="337" rx="230" ry="30" fill="#5b321f" opacity=".12"/>
+</svg>

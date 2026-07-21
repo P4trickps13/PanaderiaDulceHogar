@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Dashboard administrador</h1>
+<section class="stats">
+    <div>
+        <span>Pedidos pagados</span>
+        <strong>{{ resumen.pedidos if resumen else 0 }}</strong>
+    </div>
+    <div>
+        <span>Total vendido</span>
+        <strong>S/ {{ "%.2f"|format(analisis.ventas_totales if analisis else 0) }}</strong>
+    </div>
+    <div>
+        <span>Producto más vendido</span>
+        <strong>{{ analisis.producto_mas_vendido if analisis else "Sin ventas" }}</strong>
+    </div>
+    <div>
+        <span>Promedio por pedido</span>
+        <strong>S/ {{ "%.2f"|format(analisis.promedio_venta if analisis else 0) }}</strong>
+    </div>
+    <div>
+        <span>Unidades vendidas</span>
+        <strong>{{ analisis.cantidad_total_vendida if analisis else 0 }}</strong>
+    </div>
+</section>
+
+<section class="dashboard-chart-actions" aria-label="Controles de gráficos">
+    <div>
+        <h2>Gráficos interactivos</h2>
+        <p>Filtra, cambia la vista y actualiza los datos sin recargar la página.</p>
+    </div>
+    <button id="actualizarGraficos" type="button" data-url="{{ url_for('admin.api_dashboard') }}">
+        Actualizar datos
+    </button>
+    <span id="estadoGraficos" class="chart-status" role="status" aria-live="polite"></span>
+</section>
+
+<section class="charts">
+    <div class="chart-box">
+        <div class="chart-title-row">
+            <h2>Ventas pagadas por día</h2>
+            <div class="chart-toolbar">
+                <label for="filtroVentas">Periodo
+                    <select id="filtroVentas">
+                        <option value="all">Todos</option>
+                        <option value="30">Últimos 30 días</option>
+                        <option value="7">Últimos 7 días</option>
+                    </select>
+                </label>
+                <button id="cambiarTipoVentas" class="secondary" type="button">Ver como barras</button>
+            </div>
+        </div>
+        <div class="interactive-chart" role="img" aria-label="Gráfico interactivo de ventas pagadas por día">
+            <canvas id="ventasChart"></canvas>
+        </div>
+        <p class="chart-help">Pasa el cursor sobre los puntos o barras para ver el monto exacto.</p>
+        <p id="ventasSinDatos" class="hint" hidden>No existen ventas pagadas para graficar.</p>
+        <noscript><p class="hint">Activa JavaScript para visualizar este gráfico interactivo.</p></noscript>
+    </div>
+    <div class="chart-box">
+        <div class="chart-title-row">
+            <h2>Unidades vendidas por producto</h2>
+            <div class="chart-toolbar">
+                <label for="limiteProductos">Mostrar
+                    <select id="limiteProductos">
+                        <option value="5">Top 5</option>
+                        <option value="10" selected>Top 10</option>
+                        <option value="all">Todos</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        <div class="interactive-chart" role="img" aria-label="Gráfico interactivo de unidades vendidas por producto">
+            <canvas id="productosChart"></canvas>
+        </div>
+        <p class="chart-help">Pasa el cursor sobre cada barra para consultar las unidades vendidas.</p>
+        <p id="productosSinDatos" class="hint" hidden>No existen productos vendidos para graficar.</p>
+        <noscript><p class="hint">Activa JavaScript para visualizar este gráfico interactivo.</p></noscript>
+    </div>
+</section>
+
+<section class="split">
+    <div>
+        <h2>Ventas diarias</h2>
+        <table>
+            <thead><tr><th>Día</th><th>Total</th></tr></thead>
+            <tbody>
+                {% for venta in ventas_dia or [] %}
+                    <tr><td>{{ venta.periodo }}</td><td>S/ {{ "%.2f"|format(venta.total) }}</td></tr>
+                {% else %}
+                    <tr><td colspan="2">Sin ventas pagadas.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h2>Ventas mensuales</h2>
+        <table>
+            <thead><tr><th>Mes</th><th>Total</th></tr></thead>
+            <tbody>
+                {% for venta in ventas_mes or [] %}
+                    <tr><td>{{ venta.periodo }}</td><td>S/ {{ "%.2f"|format(venta.total) }}</td></tr>
+                {% else %}
+                    <tr><td colspan="2">Sin ventas pagadas.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<div style="margin-top: 1rem; display: flex; gap: 1rem;">
+    <a class="button" href="{{ url_for('admin.reportes', tipo='dia') }}">Reporte por día</a>
+    <a class="button secondary" href="{{ url_for('admin.reportes', tipo='mes') }}">Reporte por mes</a>
+</div>
+
+<section class="low-stock">
+    <h2>Productos con stock bajo (30 unidades o menos)</h2>
+    <ul>
+        {% for producto in productos_bajo_stock or [] %}
+            <li>{{ producto.nombre }} - Stock: {{ producto.stock }}</li>
+        {% else %}
+            <li>No hay productos con stock bajo.</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section class="admin-products">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow dark">Catálogo</span>
+            <h2>Productos de la panadería</h2>
+        </div>
+    </div>
+
+    <div class="product-admin-layout">
+        <form method="post" action="{{ url_for('admin.crear_producto_admin') }}" enctype="multipart/form-data" class="form product-form">
+            <h3>Nuevo producto</h3>
+            <label>Nombre
+                <input type="text" name="nombre" required maxlength="100">
+            </label>
+            <label>Descripción
+                <input type="text" name="descripcion" required maxlength="250">
+            </label>
+            <label>Precio
+                <input type="number" name="precio" min="0.10" step="0.10" required>
+            </label>
+            <label>Stock
+                <input type="number" name="stock" min="0" required>
+            </label>
+            <label>Imagen propia
+                <input type="file" name="imagen" accept=".png,.jpg,.jpeg,.webp">
+            </label>
+            <button type="submit">Guardar producto</button>
+        </form>
+
+        <div class="admin-product-list">
+            {% for producto in productos or [] %}
+                {% set imagen = producto.imagen or 'pan-frances.svg' %}
+                {% set carpeta = 'uploads/' if imagen.startswith('producto-') else 'images/' %}
+                <article class="admin-product">
+                    <img src="{{ url_for('static', filename=carpeta ~ imagen) }}" alt="{{ producto.nombre }}">
+                    <div>
+                        <form method="post" action="{{ url_for('admin.editar_producto', producto_id=producto.id) }}" class="edit-product-form">
+                            <label>Nombre
+                                <input type="text" name="nombre" value="{{ producto.nombre }}" required maxlength="100">
+                            </label>
+                            <label>Descripción
+                                <textarea name="descripcion" rows="3" required maxlength="250">{{ producto.descripcion }}</textarea>
+                            </label>
+                            <div class="edit-grid">
+                                <label>Precio
+                                    <input type="number" name="precio" min="0.10" step="0.10" value="{{ "%.2f"|format(producto.precio) }}" required>
+                                </label>
+                                <label>Stock
+                                    <input type="number" name="stock" min="0" value="{{ producto.stock }}" required>
+                                </label>
+                            </div>
+                            <label class="check-row">
+                                <input type="checkbox" name="activo" value="1" {% if producto.activo %}checked{% endif %}>
+                                Visible en catálogo
+                            </label>
+                            <button type="submit">Guardar cambios</button>
+                        </form>
+
+                        <form method="post" action="{{ url_for('admin.subir_imagen_producto', producto_id=producto.id) }}" enctype="multipart/form-data" class="upload-form">
+                            <input type="file" name="imagen" accept=".png,.jpg,.jpeg,.webp" required>
+                            <button type="submit">Cambiar imagen</button>
+                        </form>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script id="dashboardDatos" type="application/json">
+    {{ {"ventas_fecha": analisis.ventas_fecha | default({}), "productos": analisis.productos | default({})} | tojson }}
+</script>
+<script src="{{ url_for('static', filename='js/chart.umd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

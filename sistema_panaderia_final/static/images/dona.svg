@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Dona glaseada">
+  <rect width="640" height="480" fill="#fff0f2"/>
+  <circle cx="320" cy="250" r="135" fill="#c66a2c"/>
+  <circle cx="320" cy="250" r="74" fill="#fff0f2"/>
+  <path d="M210 238c22-77 103-111 180-78 47 20 79 65 82 116-43-22-70 22-116 15-48-8-75-46-146-53z" fill="#f4a8c6"/>
+  <circle cx="260" cy="214" r="8" fill="#fff"/>
+  <circle cx="373" cy="195" r="8" fill="#57a773"/>
+  <circle cx="418" cy="260" r="8" fill="#f4d35e"/>
+  <circle cx="292" cy="318" r="8" fill="#5b7cfa"/>
+  <ellipse cx="320" cy="390" rx="175" ry="24" fill="#5b321f" opacity=".12"/>
+</svg>

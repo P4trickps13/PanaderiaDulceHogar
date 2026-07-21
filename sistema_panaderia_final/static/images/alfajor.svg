@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Alfajor">
+  <rect width="640" height="480" fill="#fff7e7"/>
+  <ellipse cx="320" cy="218" rx="150" ry="62" fill="#e3b66f"/>
+  <rect x="178" y="220" width="284" height="58" rx="28" fill="#9b5b2e"/>
+  <ellipse cx="320" cy="276" rx="150" ry="62" fill="#e7bd7a"/>
+  <g fill="#ffffff" opacity=".9">
+    <circle cx="235" cy="205" r="7"/>
+    <circle cx="304" cy="190" r="6"/>
+    <circle cx="382" cy="208" r="7"/>
+    <circle cx="270" cy="292" r="6"/>
+    <circle cx="358" cy="306" r="7"/>
+  </g>
+  <ellipse cx="320" cy="360" rx="178" ry="24" fill="#5b321f" opacity=".12"/>
+</svg>

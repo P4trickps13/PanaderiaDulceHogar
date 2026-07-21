@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Pan frances">
+  <rect width="640" height="480" fill="#fff3df"/>
+  <ellipse cx="320" cy="315" rx="235" ry="70" fill="#d77b2d"/>
+  <ellipse cx="320" cy="280" rx="220" ry="95" fill="#eda94e"/>
+  <path d="M185 262c42-40 86-52 130-35M315 224c48-20 104-12 147 22M420 286c42-18 80-15 112 8" fill="none" stroke="#fff0c9" stroke-width="20" stroke-linecap="round"/>
+  <ellipse cx="320" cy="358" rx="250" ry="26" fill="#5b321f" opacity=".12"/>
+</svg>

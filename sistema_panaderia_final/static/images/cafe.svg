@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Cafe americano">
+  <rect width="640" height="480" fill="#eef8f2"/>
+  <path d="M205 190h230l-22 146c-5 34-34 59-68 59h-50c-35 0-64-25-69-59l-21-146z" fill="#ffffff"/>
+  <path d="M230 220h180l-17 104c-4 25-25 43-50 43h-46c-25 0-46-18-50-43l-17-104z" fill="#8a4b2a"/>
+  <path d="M430 230h38c42 0 42 88-8 88h-43" fill="none" stroke="#ffffff" stroke-width="24" stroke-linecap="round"/>
+  <path d="M272 146c-20-24 22-42 4-66M335 146c-20-24 22-42 4-66" fill="none" stroke="#9c7357" stroke-width="14" stroke-linecap="round"/>
+  <ellipse cx="320" cy="404" rx="180" ry="24" fill="#5b321f" opacity=".12"/>
+</svg>

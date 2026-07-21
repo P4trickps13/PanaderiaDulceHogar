@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-label="Mostrador profesional de panaderia">
+  <rect width="1200" height="620" fill="#2b2018"/>
+  <rect y="390" width="1200" height="230" fill="#7a3d24"/>
+  <rect x="80" y="90" width="1040" height="350" rx="18" fill="#f7dfbd"/>
+  <rect x="112" y="122" width="976" height="286" rx="12" fill="#3a2a20"/>
+  <circle cx="235" cy="254" r="86" fill="#d98a3a"/>
+  <ellipse cx="235" cy="254" rx="116" ry="44" fill="#f2bd73"/>
+  <ellipse cx="464" cy="252" rx="148" ry="72" fill="#c8752f"/>
+  <path d="M350 250c45-50 180-50 228 0-52 45-173 45-228 0z" fill="#f3c078"/>
+  <rect x="668" y="178" width="260" height="150" rx="14" fill="#f0c269"/>
+  <path d="M700 218h196M700 260h196M700 300h196" stroke="#9a5228" stroke-width="12" stroke-linecap="round"/>
+  <rect x="120" y="420" width="960" height="80" rx="16" fill="#bd7a3e"/>
+  <rect x="170" y="456" width="860" height="20" rx="10" fill="#f0bc70"/>
+</svg>

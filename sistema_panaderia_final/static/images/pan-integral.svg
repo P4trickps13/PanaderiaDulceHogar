@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Pan integral">
+  <rect width="640" height="480" fill="#f4f7e7"/>
+  <path d="M160 310c28-115 116-170 255-144 78 14 124 66 145 144H160z" fill="#8a552d"/>
+  <path d="M198 288c38-70 111-103 215-83 53 10 87 38 107 83H198z" fill="#b77a3f"/>
+  <g fill="#f2df9c">
+    <ellipse cx="255" cy="245" rx="9" ry="16"/>
+    <ellipse cx="315" cy="226" rx="9" ry="16"/>
+    <ellipse cx="384" cy="250" rx="9" ry="16"/>
+    <ellipse cx="448" cy="278" rx="9" ry="16"/>
+  </g>
+  <ellipse cx="320" cy="350" rx="220" ry="25" fill="#5b321f" opacity=".12"/>
+</svg>

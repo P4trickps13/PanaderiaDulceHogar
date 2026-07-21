@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Milhojas">
+  <rect width="640" height="480" fill="#fff8eb"/>
+  <rect x="165" y="180" width="310" height="46" rx="8" fill="#d8953e"/>
+  <rect x="175" y="225" width="290" height="38" rx="8" fill="#fff0bd"/>
+  <rect x="158" y="262" width="324" height="46" rx="8" fill="#d8953e"/>
+  <rect x="176" y="306" width="288" height="38" rx="8" fill="#fff0bd"/>
+  <rect x="166" y="343" width="308" height="44" rx="8" fill="#c87f33"/>
+  <path d="M210 204h220M205 286h230M218 365h205" stroke="#fff2c9" stroke-width="10" stroke-linecap="round"/>
+  <ellipse cx="320" cy="410" rx="190" ry="22" fill="#5b321f" opacity=".12"/>
+</svg>

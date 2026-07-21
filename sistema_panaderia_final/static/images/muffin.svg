@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Muffin de vainilla">
+  <rect width="640" height="480" fill="#fff3e8"/>
+  <path d="M210 232c0-70 54-118 113-118 64 0 118 45 118 118 44 10 73 42 73 82H135c0-43 30-74 75-82z" fill="#d88334"/>
+  <path d="M196 300h248l-34 100H230z" fill="#f0c16c"/>
+  <path d="M230 310l18 78M292 306l8 84M360 306l-12 84" stroke="#b5773b" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="285" cy="184" r="10" fill="#7b3b24"/>
+  <circle cx="364" cy="214" r="10" fill="#7b3b24"/>
+  <ellipse cx="320" cy="410" rx="175" ry="22" fill="#5b321f" opacity=".12"/>
+</svg>
