@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Carrito de compras</h1>
+{% if items %}
+    <section class="checkout-layout">
+        <div class="cart-list">
+            {% for item in items %}
+                <article class="cart-item">
+                    {% set carpeta = 'uploads/' if item.imagen.startswith('producto-') else 'images/' %}
+                    <img src="{{ url_for('static', filename=carpeta ~ item.imagen) }}" alt="{{ item.producto.nombre }}">
+                    <div>
+                        <h2>{{ item.producto.nombre }}</h2>
+                        <p>S/ {{ "%.2f"|format(item.producto.precio) }} por unidad</p>
+                        <strong>Subtotal: S/ {{ "%.2f"|format(item.subtotal) }}</strong>
+                    </div>
+                    <form method="post" action="{{ url_for('cliente.actualizar_carrito') }}" class="quantity-form">
+                        <input type="hidden" name="producto_id" value="{{ item.producto.id }}">
+                        <button type="submit" name="accion" value="restar">-</button>
+                        <span>{{ item.cantidad }}</span>
+                        <button type="submit" name="accion" value="sumar">+</button>
+                        <button class="ghost-button" type="submit" name="accion" value="quitar">Quitar</button>
+                    </form>
+                </article>
+            {% endfor %}
+        </div>
+
+        <aside class="summary">
+            <h2>Resumen</h2>
+            <div class="summary-row">
+                <span>Productos</span>
+                <strong>{{ carrito_total }}</strong>
+            </div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <strong>S/ {{ "%.2f"|format(total) }}</strong>
+            </div>
+            <a class="button secondary full" href="{{ url_for('cliente.catalogo') }}">Agregar mas productos</a>
+            <form method="post" action="{{ url_for('cliente.vaciar_carrito') }}">
+                <button class="ghost-button full" type="submit">Vaciar carrito</button>
+            </form>
+
+            {% if session.get('rol') in ['cliente', 'admin'] %}
+                <form method="post" action="{{ url_for('cliente.crear') }}" class="form payment-form">
+                    <label>Número de operación Yape
+                        <input type="text" name="numero_operacion" placeholder="Ejemplo: 987654321" minlength="3" maxlength="30" required>
+                    </label>
+                    <button type="submit">Confirmar pedido</button>
+                </form>
+            {% elif session.get('usuario_id') %}
+                <p class="hint">El rol vendedor no puede registrar compras. Cierra sesión e ingresa como cliente.</p>
+            {% else %}
+                <a class="button full" href="{{ url_for('login.ingresar') }}">Ingresar para pagar</a>
+            {% endif %}
+        </aside>
+    </section>
+{% else %}
+    <section class="empty-cart">
+        <h2>Tu carrito esta vacio</h2>
+        <p>Agrega panes, postres o bebidas desde el catalogo.</p>
+        <a class="button" href="{{ url_for('cliente.catalogo') }}">Ver catalogo</a>
+    </section>
+{% endif %}
+{% endblock %}

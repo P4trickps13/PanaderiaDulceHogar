@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Mis pedidos</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Pago</th>
+            <th>Comprobante</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pedido in pedidos %}
+            <tr>
+                <td>#{{ pedido.id }}</td>
+                <td>{{ pedido.fecha }}</td>
+                <td>S/ {{ "%.2f"|format(pedido.total) }}</td>
+                <td>{{ pedido.estado }}</td>
+                <td>{{ pedido.metodo_pago }} {{ pedido.numero_operacion }}</td>
+                <td>{{ pedido.comprobante or "Pendiente" }}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="6">Todavía no tienes pedidos.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

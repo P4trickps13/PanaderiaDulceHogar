@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div>
+        <span class="eyebrow">Horneado del día</span>
+        <h1>Panadería artesanal Dulce Hogar</h1>
+        <p>Elige tus productos favoritos, revisa tu carrito y paga por Yape al confirmar el pedido.</p>
+    </div>
+</section>
+
+<section class="grid">
+    {% for producto in productos %}
+        <article class="card">
+            {% set imagen = producto.imagen or 'pan-frances.svg' %}
+            {% set carpeta = 'uploads/' if imagen.startswith('producto-') else 'images/' %}
+            <img class="product-image" src="{{ url_for('static', filename=carpeta ~ imagen) }}" alt="{{ producto.nombre }}">
+            <div class="card-body">
+                <div class="product-heading">
+                    <h2>{{ producto.nombre }}</h2>
+                    <strong>S/ {{ "%.2f"|format(producto.precio) }}</strong>
+                </div>
+                <p>{{ producto.descripcion }}</p>
+                <span class="stock">Stock: {{ producto.stock }}</span>
+                <form method="post" action="{{ url_for('cliente.agregar_carrito') }}" class="product-actions">
+                    <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                    <label>Cantidad
+                        <input type="number" name="cantidad" min="1" max="{{ producto.stock }}" value="1" {% if producto.stock == 0 %}disabled{% endif %}>
+                    </label>
+                    <button type="submit" {% if producto.stock == 0 %}disabled{% endif %}>
+                        {{ "Agotado" if producto.stock == 0 else "Agregar" }}
+                    </button>
+                </form>
+            </div>
+        </article>
+    {% else %}
+        <p>No hay productos disponibles.</p>
+    {% endfor %}
+</section>
+{% endblock %}
