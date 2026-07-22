@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="split">
+    <div>
+        <h1>Ingreso al sistema</h1>
+        <p>Roles disponibles: administrador, vendedor y cliente.</p>
+        <form method="post" action="{{ url_for('login.ingresar') }}" class="form">
+            <label>Correo
+                <input type="email" name="email" required>
+            </label>
+            <label>Contrasena
+                <input type="password" name="password" required>
+            </label>
+            <button type="submit">Ingresar</button>
+        </form>
+        <p class="hint">Prueba: admin@panaderia.com, vendedor@panaderia.com o cliente@panaderia.com. Clave: 123456</p>
+    </div>
+    <div>
+        <h2>Crear cuenta de cliente</h2>
+        <form method="post" action="{{ url_for('login.registro') }}" class="form">
+            <label>Nombre
+                <input type="text" name="nombre" required>
+            </label>
+            <label>Correo
+                <input type="email" name="email" required>
+            </label>
+            <label>Contrasena
+                <input type="password" name="password" required>
+            </label>
+            <button type="submit">Registrarme</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
