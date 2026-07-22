@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Reporte de ventas pagadas por {{ "día" if tipo == "dia" else "mes" }}</h1>
+<a class="button" href="{{ url_for('admin.reportes', tipo='dia') }}">Por día</a>
+<a class="button secondary" href="{{ url_for('admin.reportes', tipo='mes') }}">Por mes</a>
+<table>
+    <thead>
+        <tr>
+            <th>Periodo</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fila in reporte %}
+            <tr>
+                <td>{{ fila.periodo }}</td>
+                <td>S/ {{ "%.2f"|format(fila.total) }}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="2">No existen ventas pagadas.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
